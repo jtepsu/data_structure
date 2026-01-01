@@ -115,33 +115,71 @@ public class LinkedListRecursive<T extends Comparable<T>> implements List<T> {
       }
    }
 
+   // public void sort() {
+   //    ListCell<T> sortedCell = sort(this.getHead());
+   //    if (!(this.getHead().equals(sortedCell))) { // this always returns false for some reason
+   //       this.head = sortedCell;
+   //       this.sort();
+   //    }
+   //    this.head = sortedCell;
+   // }
+
+   // private ListCell<T> sort(ListCell<T> cell) {
+   //    if (cell.getNext() == null) return cell;
+   //    if (cell.getDatum().compareTo(cell.getNext().getDatum()) > 0) {
+   //       ListCell<T> tail = new ListCell(cell.getDatum(), cell.getNext().getNext());
+   //       cell = new ListCell(cell.getNext().getDatum(), tail);
+   //       return cell;
+   //    } else {
+   //       cell = new ListCell(cell.getDatum(), sort(cell.getNext()));
+   //       return cell;
+   //    }
+   // }
+
    public void sort() {
-      ListCell<T> sortedCell = sort(this.getHead());
-      if (!(this.getHead().equals(sortedCell))) { // this always returns false for some reason
-         this.head = sortedCell;
-         this.sort();
-      }
-      this.head = sortedCell;
+      this.head = sort(this.getHead(), null);
    }
 
-   private ListCell<T> sort(ListCell<T> cell) {
-      if (cell.getNext() == null) return cell;
-      if (cell.getDatum().compareTo(cell.getNext().getDatum()) > 0) {
-         ListCell<T> tail = new ListCell(cell.getDatum(), cell.getNext().getNext());
-         cell = new ListCell(cell.getNext().getDatum(), tail);
-         return cell;
-      } else {
-         cell = new ListCell(cell.getDatum(), sort(cell.getNext()));
-         return cell;
+   private ListCell<T> sort(ListCell<T> oldCell, ListCell<T> newCell) {
+      if (oldCell == null) {
+         return newCell;
       }
+      newCell = sortedInsert(newCell, oldCell.getDatum());
+      return sort(oldCell.getNext(), newCell);
    }
 
    public void sortedInsert(T data) {
+      this.head = sortedInsert(this.head, data);
+   }
 
+   private ListCell<T> sortedInsert(ListCell<T> cell, T data) {
+      if (cell == null) {
+         cell = new ListCell(data, null);
+         return cell;
+      }
+      if (cell.getDatum().compareTo(data) >= 0) {
+         cell = new ListCell(data, cell);
+         return cell;
+      }
+      cell = new ListCell(cell.getDatum(), sortedInsert(cell.getNext(), data));
+      return cell;
    }
 
    public void removeDuplicates() {
+      this.head = removeDuplicates(this.getHead());
+   }
 
+   private ListCell<T> removeDuplicates(ListCell<T> cell) {
+      if (cell == null || cell.getNext() == null) {
+         return cell;
+      }
+      if (cell.getDatum().compareTo(cell.getNext().getDatum()) == 0) {
+         cell.setNext(cell.getNext().getNext());
+         return removeDuplicates(cell);
+      } else {
+         cell = new ListCell(cell.getDatum(), removeDuplicates(cell.getNext()));
+         return cell;
+      }
    }
 
    public void merge(List<T> otherList) {
@@ -149,9 +187,14 @@ public class LinkedListRecursive<T extends Comparable<T>> implements List<T> {
    }
 
    private ListCell<T> merge(ListCell<T> cell1, ListCell<T> cell2) {
-
-      
-      return null;
+      if (cell1 == null) {
+         return cell2;
+      }
+      if (cell2 == null) {
+         return cell1;
+      }
+      cell1 = sortedInsert(cell1, cell2.getDatum());
+      return merge(cell1, cell2.getNext());
    }
 
    /**

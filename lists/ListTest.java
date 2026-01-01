@@ -35,7 +35,7 @@ public class ListTest {
       System.out.println(myList);
 
       myList.sortedInsert(555);
-      System.out.println(myList);      
+      System.out.println(myList);
 
       myList.removeDuplicates();
       System.out.println(myList);
