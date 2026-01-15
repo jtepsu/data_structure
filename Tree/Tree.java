@@ -1,5 +1,7 @@
 package Tree;
 
+import java.util.List;
+
 public class Tree<T> {
 
     protected TreeCell<T> root;
@@ -103,6 +105,45 @@ public class Tree<T> {
         printTree(node.getLeft(), level + 1);
     }
 
+    public void preorder() {
+        preorder(root);
+    }
+
+    private void preorder(TreeCell<T> node) {
+        if (node == null) {
+            return;
+        }
+        System.out.println(node.getDatum());
+        preorder(node.getLeft());
+        preorder(node.getRight());
+    }
+
+    public void inorder() {
+        inorder(root);
+    }
+
+    private void inorder(TreeCell<T> node) {
+        if (node == null) {
+            return;
+        }
+        inorder(node.getLeft());
+        System.out.println(node.getDatum());
+        inorder(node.getRight());
+    }
+
+    public void postorder() {
+        postorder(root);
+    }
+
+    private void postorder(TreeCell<T> node) {
+        if (node == null) {
+            return;
+        }
+        postorder(node.getLeft());
+        postorder(node.getRight());
+        System.out.println(node.getDatum());
+    }
+
     private void printTreePreOrder(TreeCell<T> node, int level) {
         if (node == null)
             return;
@@ -114,4 +155,5 @@ public class Tree<T> {
         printTreePreOrder(node.getLeft(), level + 1);
         printTreePreOrder(node.getRight(), level + 1);
     }
+
 }

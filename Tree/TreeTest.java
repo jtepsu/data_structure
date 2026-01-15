@@ -14,5 +14,12 @@ public class TreeTest {
       System.out.println();
       System.out.println("Size: " + binTree.size());
       System.out.println("Height: " + binTree.height());
+      System.out.println();
+      System.out.println("Pre-order:");
+      binTree.preorder();
+      System.out.println("In-order:");
+      binTree.inorder();
+      System.out.println("Post-order:");
+      binTree.postorder();
     }
 }
