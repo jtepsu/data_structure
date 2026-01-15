@@ -21,4 +21,24 @@ public class BST<T extends Comparable<T>> extends Tree<T> {
 
         return node;
     }
+
+    @Override
+    public boolean search(T element) {
+        return search(element, root);
+    }
+
+    private boolean search(T element, TreeCell<T> node) {
+        if (node == null) {
+            return false;
+        }
+        if (element.compareTo(node.getDatum()) == 0) {
+            return true;
+        }
+        if (element.compareTo(node.getDatum()) > 0) {
+            return search(element, node.getRight());
+        }
+        return search(element, node.getLeft());
+    }
+
+    
 }

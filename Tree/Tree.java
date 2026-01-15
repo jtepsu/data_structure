@@ -113,7 +113,7 @@ public class Tree<T> {
         if (node == null) {
             return;
         }
-        System.out.println(node.getDatum());
+        System.out.print(node.getDatum() + " ");
         preorder(node.getLeft());
         preorder(node.getRight());
     }
@@ -127,7 +127,7 @@ public class Tree<T> {
             return;
         }
         inorder(node.getLeft());
-        System.out.println(node.getDatum());
+        System.out.print(node.getDatum() + " ");
         inorder(node.getRight());
     }
 
@@ -141,7 +141,7 @@ public class Tree<T> {
         }
         postorder(node.getLeft());
         postorder(node.getRight());
-        System.out.println(node.getDatum());
+        System.out.print(node.getDatum() + " ");
     }
 
     private void printTreePreOrder(TreeCell<T> node, int level) {
