@@ -1,4 +1,3 @@
-package Tree;
 
 class TreeCell<T> {
     private T datum;

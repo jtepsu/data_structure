@@ -1,5 +1,3 @@
-package Tree;
-
 public class TreeTest {
    public static void main(String[] args) {
       // Tree<Integer> binTree = new Tree<Integer>();
@@ -7,8 +5,8 @@ public class TreeTest {
       // for (int i = 0; i < 11; i++) {
       //    int element = (int)(Math.random() * 50) + 1;
       //   System.out.println("Inserting " + element);
-      //    binTree.insert(element);
-      //}
+      //    binTree.insertByLevel(element);
+      // }
       BST<Integer> binTree = new BST<Integer>();
       Integer[] nums = {18, 12, 25, 4, 15, 25, 30, 1, 13, 17, 28, 3, 14, 29};
       for (int i = 0; i < nums.length; i++) {

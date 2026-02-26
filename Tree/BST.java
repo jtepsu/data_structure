@@ -1,4 +1,3 @@
-package Tree;
 
 public class BST<T extends Comparable<T>> extends Tree<T> {
 
@@ -12,7 +11,7 @@ public class BST<T extends Comparable<T>> extends Tree<T> {
             return new TreeCell<>(element, null, null);
         }
 
-        // Compare element with node’s datum
+        // Compare element with node's datum
         if (element.compareTo(node.getDatum()) <= 0) {
             node.setLeft(insert(element, node.getLeft()));
         } else {
