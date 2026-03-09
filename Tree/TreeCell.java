@@ -1,8 +1,10 @@
 
-class TreeCell<T> {
+public class TreeCell<T> {
     private T datum;
     private TreeCell<T> left, right;
 
+    public TreeCell() {
+    }
     public TreeCell(T x) {
         datum = x;
     }
